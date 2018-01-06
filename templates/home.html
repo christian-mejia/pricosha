@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>PriCoSha</title>
+	<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+</head>
+
+<body>
+	<div class="container">
+		<header><h1>PriCoSha</h1></header>
+		<nav>
+			<ul>
+				<li><a class="button" href="/home"> Home </a></li><br>
+				<li><a class="button" href="/messages"> Messages </a></li><br>
+				<li><a class="button" href="/friendgroups"> FriendGroups </a></li><br>
+				<li><a class="button" href="/friends"> Friends </a></li><br>
+				<li><a class="button" href="/managetags"> Manage Tags </a></li><br>
+				<li><a class="button" href="/myposts"> My Posts </a></li><br>
+				<li><a class="button" href="/logout">Logout</a></li><br>
+			</ul>
+		</nav>
+		<article>
+			<h1>Welcome {{username}}</h1>
+			<br>
+			<form action="/post" method="POST">
+				<h4> Make a Post </h4>
+				<div class="form-row">
+					<div class="form-group col-md-4">
+						<input class="form-control" type="text" name = "title" placeholder="Title" required/>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-4">				
+						<input class="form-control" type="text" name = "path" placeholder="link" required/>
+					</div>
+				</div>
+				<div class="form-check">
+					<label class="form-check-label">
+						<input class="form-check-input" type="radio" id = "public" name = "is_pub" value = "1" required/>Public <br>
+					</label>
+				</div>
+				<div class="form-check">
+					<label class="form-check-label">
+						<input class="form-check-input" type="radio" id ="private" name = "is_pub" value = "0" required/>Private <br>
+					</label>
+				</div>
+
+				<div class="form-row">
+					<div class="form-group col-md-4">
+						<select class="form-control" id="friendgroup" name = "friendgroup">
+							<option value="" disabled selected>Select a FriendGroup you own</option>
+							{% for line in ownFG %}
+							<option value={{line.group_name}}> {{line.group_name}} </option>
+							{% endfor %}
+						</select>
+					</div>
+					<div class="col">
+						<input type="submit" class="btn btn-primary" value = Post />
+					</div>
+				</div>
+			</form>
+			<br>
+			<table>
+				<th> Private </th>
+				{% for line in posts %}
+				<tr>
+					<td>
+						<a href=/posts/{{line.ID}} ><i>{{line.content_name}}</i></a><br>
+						ID: {{line.ID}} <br>
+						Posted By: <i> {{line.username}} </i> ({{line.group_name}})<br>
+						{{line.timest}} <br>
+						<br>
+					</td>
+				</tr>
+				{% endfor %}
+			</table>
+			<br>
+			<table>
+				<th> Public </th>
+				{% for line in public %}
+				<tr>
+					<td>
+						<a href=/posts/{{line.ID}} ><i>{{line.content_name}}</i> </a><br>
+						ID: {{line.ID}} <br>
+						Posted By: <i>{{line.username}} </i> <br>
+						Posted At: {{line.timest}} <br>
+						<br>
+					</td>
+				</tr>
+				{% endfor %}
+			</table>
+
+			{% if error %}
+			<p class="error"><strong>Error:</strong> {{error}}</p>
+			{% endif %}
+
+		</article>
+	</div>
+</body>
+
+</html>

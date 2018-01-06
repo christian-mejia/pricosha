@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<div class="container-fluid">
+	<head>
+		<link href = "style.css" rel = "stylesheet" type = "text/css">
+		<title>PriCoSha</title>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	</head>
+
+	<body>
+		<br>
+		<center><font size="20">Welcome to PriCoSha!</font></center>
+		<br>
+		{% if not message %}
+		<center>
+			<a class="btn" href="/login">Login</a>
+			<br>
+			<a class="btn" href="/register">Register</a>
+		</center>
+		{% endif %}
+
+		{% if message %}
+		<a href="/logout">Logout</a>
+		<a href="/remove_account">Remove Account</a>
+		<p class="message">You are logged in {{message}}. You have {{num}} follower(s)</p> </br>
+		<a href="/tweets">View your tweets</a> </br>
+		<a href="/find_people">Find people to follow</a> </br>
+		<a href="/unfollow">Unfollow someone</a> </br>
+		<a href="/view_followed">View people you have followed</a> </br>
+	</br>
+	<h4>15 most recent tweets from you and your followers </h4> </br>
+
+	{% for line in tweets%}
+	<p>{{line}}</p>
+	<hr>
+	{% endfor %}
+	{% endif %}
+</body>
+</div>
+</html>

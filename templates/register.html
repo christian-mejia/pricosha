@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>PriCoSha</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <header><h1>PriCoSha</h1></header>
+        <center>
+<form action="/registerAuth" method="POST">
+    <br>
+    <div class="col-sm-5">
+	<input class="form-control" type="text" name = "first_name" placeholder="First Name" required/> </br>
+	<input class="form-control" type="text" name = "last_name" placeholder="Last Name" required/> </br>
+	<input class="form-control" type="text" name = "username" placeholder="Username" required/> </br>
+	<input class="form-control" type="password" name = "password" placeholder="Password" required/></br>
+</div>
+	<input type="submit" class="btn btn-primary" value = Register />
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</form>
+<a class="button" href="/">Go back</a>
+</center>
+</div>
+
+</body>
+
+</html>
