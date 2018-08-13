@@ -2,7 +2,7 @@
 A social network to share content amongst FriendGroups
 
 # Features
-1. Login:​ The user enters username and password. PriCoSha checks whether the hash of
+*1. Login:​* The user enters username and password. PriCoSha checks whether the hash of
 the password matches the stored password for that username. If so, it initiates a
 session, storing the username and any other relevant data in session variables, then
 goes to the home page (or provides some mechanism for the user to select their next
